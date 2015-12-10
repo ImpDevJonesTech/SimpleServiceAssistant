@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/email_send"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_email"
+                android:textSize="30sp"/>
+            <CheckBox
+                android:id="@+id/prevmonth_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email_send"/>
+            <TextView
+                android:id="@+id/prevmonth_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prevmonth_checkbox"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"/>
+            <CheckBox
+                android:id="@+id/curmonth_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prevmonth_tv"/>
+            <TextView
+                android:id="@+id/curmonth_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/curmonth_checkbox"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/button_div"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/send" android:layout_toStartOf="@+id/send"
+                android:background="@android:color/transparent"
+                android:text="@string/cancel"
+                android:onClick="cancel"/>
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:text="@string/send"
+                android:onClick="send"/>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
