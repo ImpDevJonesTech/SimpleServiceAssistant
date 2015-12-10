@@ -51,6 +51,7 @@
     <string name="r_v">return visits</string>
     <string name="b_s">bible studies</string>
     <string name="p_c">hours of pioneer credits</string>
+    <string name="p_c-h_m">hours.minutes of pioneer credits</string>
     <string name="report_for">Report for</string>
     <string name="no_checks">None of the Boxes Selected</string>
     <string name="no_email">No Report Stored for this Month</string>

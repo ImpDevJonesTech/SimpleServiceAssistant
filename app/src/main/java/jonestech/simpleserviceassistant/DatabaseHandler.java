@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
     //Database version and name
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "simpleServiceAssistant.db";
     //Database table name
     public static final String TABLE_REPORT = "report";

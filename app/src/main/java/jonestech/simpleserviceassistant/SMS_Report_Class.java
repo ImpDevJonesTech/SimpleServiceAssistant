@@ -56,7 +56,7 @@ public class SMS_Report_Class extends Activity {
             }
         });
         pmonthcheckbox.setText(getString(R.string.report_for)+" "+pmonthyearmethod());
-        pmonthtv.setText(prevmonthmethod(pmymethod()+""));
+        pmonthtv.setText(prevmonthmethod(pmymethod() + ""));
         cmonthcheckbox.setText(getString(R.string.report_for)+" "+cmonthyearmethod());
         cmonthtv.setText(curmonthmethod(cmymethod()+""));
     }
@@ -146,7 +146,18 @@ public class SMS_Report_Class extends Activity {
         if(ps == 0){pbiblestudies = empty;}else{
             if(p_pc == 0){pbiblestudies = ps+" "+getString(R.string.b_s)+" ";
             }else{pbiblestudies = ps+" "+getString(R.string.b_s)+", ";}}
-        if(p_pc == 0){p_pioncred = empty;}else{p_pioncred = p_pc+" "+getString(R.string.p_c)+" ";}
+        if(p_pc == 0){p_pioncred = empty;}else{
+            Integer ha = p_pc/3600000;
+            Integer ma = (p_pc/60000)-(ha*60);
+            if(ha.equals(0)&&ma.equals(0)){p_pioncred = empty;
+            }else if(ha.equals(0)){
+                    p_pioncred = "0."+ma+" "+getString(R.string.p_c_h_m)+" ";
+            }else if(ma.equals(0)){
+                    p_pioncred = ha+" "+getString(R.string.p_c)+" ";
+            }else{
+                    p_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
+            }
+        }
         if((phours+pmagazines+pbrochures+pbooks+ptracts+preturnvisits+pbiblestudies+p_pioncred).equals(empty)){
             pmonthmethodstring = getString(R.string.no_email);
         }else {
@@ -201,7 +212,17 @@ public class SMS_Report_Class extends Activity {
             if(c_pc == 0){cbiblestudies = cs+" "+getString(R.string.b_s)+" ";
             }else {cbiblestudies = cs+" "+getString(R.string.b_s)+", ";}}
         if(c_pc == 0){c_pioncred = empty;}else{
-            c_pioncred = c_pc+" "+getString(R.string.p_c)+" ";}
+            Integer ha = c_pc/3600000;
+            Integer ma = (c_pc/60000)-(ha*60);
+            if(ha.equals(0)&&ma.equals(0)){c_pioncred = empty;
+            }else if(ha.equals(0)){
+                c_pioncred = "0."+ma+" "+getString(R.string.p_c_h_m)+" ";
+            }else if(ma.equals(0)){
+                c_pioncred = ha+" "+getString(R.string.p_c)+" ";
+            }else{
+                c_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
+            }
+        }
         if((chours+cmagazines+cbrochures+cbooks+ctracts+creturnvisits+cbiblestudies+c_pioncred).equals(empty)){
             cmonthmethodstring = getString(R.string.no_email);
         }else{

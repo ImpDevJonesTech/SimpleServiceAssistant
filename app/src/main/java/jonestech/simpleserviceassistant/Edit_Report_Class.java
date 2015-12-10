@@ -148,7 +148,7 @@ public class Edit_Report_Class extends Activity {
         if(hour.getText().toString().isEmpty() && mags.getText().toString().isEmpty() &&
                 broch.getText().toString().isEmpty() && book.getText().toString().isEmpty() &&
                 tract.getText().toString().isEmpty() && rvs.getText().toString().isEmpty() &&
-                study.getText().toString().isEmpty()){
+                study.getText().toString().isEmpty() && pioncred.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(), R.string.no_report, Toast.LENGTH_LONG).show();
         }else{
             db.updateDetail(mid, h, m, br, bo, t, rv, s, co, pc);
