@@ -1,5 +1,6 @@
 package jonestech.simpleserviceassistant;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,19 +34,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            if(themeUtils.cTheme == themeUtils.PURPLE){
+            SharedPreferences prefs = getSharedPreferences("THEME_SELECTION", MODE_PRIVATE);
+            Integer theme = prefs.getInt("Theme_Color", themeUtils.GREEN);
+            if(theme == themeUtils.PURPLE){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_purple));
             }
-            if(themeUtils.cTheme == themeUtils.BLUE){
+            if(theme == themeUtils.BLUE){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_blue));
             }
-            if(themeUtils.cTheme == themeUtils.GREEN){
+            if(theme == themeUtils.GREEN){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_green));
             }
-            if(themeUtils.cTheme == themeUtils.RED){
+            if(theme == themeUtils.RED){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_red));
             }
-            if(themeUtils.cTheme == themeUtils.ORANGE){
+            if(theme == themeUtils.ORANGE){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_orange));
             }
         }

@@ -1,6 +1,7 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
 import android.content.Intent;
+
 /**
  * Created by Josiah on 2/27/2015.
  */

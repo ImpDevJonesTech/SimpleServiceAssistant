@@ -1,6 +1,7 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 /**
@@ -23,25 +24,33 @@ public class Theme_Picker extends Activity implements View.OnClickListener {
         Intent i = getBaseContext().getPackageManager()
                 .getLaunchIntentForPackage( getBaseContext().getPackageName() );
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        SharedPreferences prefs = this.getSharedPreferences(
+                "THEMES_SELECTION", MODE_PRIVATE);
+        SharedPreferences.Editor ed = prefs.edit();
         switch (v.getId()){
             case R.id.default_color:
                 themeUtils.changeToTheme(this, themeUtils.PURPLE);
+                ed.putInt("Theme_Color", themeUtils.PURPLE).apply();
                 startActivity(i);
                 break;
             case R.id.blue_color:
                 themeUtils.changeToTheme(this, themeUtils.BLUE);
+                ed.putInt("Theme_Color", themeUtils.BLUE).apply();
                 startActivity(i);
                 break;
             case R.id.green_color:
                 themeUtils.changeToTheme(this, themeUtils.GREEN);
+                ed.putInt("Theme_Color", themeUtils.GREEN).apply();
                 startActivity(i);
                 break;
             case R.id.red_color:
                 themeUtils.changeToTheme(this, themeUtils.RED);
+                ed.putInt("Theme_Color", themeUtils.RED).apply();
                 startActivity(i);
                 break;
             case R.id.orange_color:
                 themeUtils.changeToTheme(this, themeUtils.ORANGE);
+                ed.putInt("Theme_Color", themeUtils.ORANGE).apply();
                 startActivity(i);
                 break;
         }
