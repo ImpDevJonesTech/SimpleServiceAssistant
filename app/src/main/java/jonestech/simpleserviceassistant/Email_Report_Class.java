@@ -1,6 +1,7 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +27,9 @@ public class Email_Report_Class extends Activity {
     String currentmonth, prevmonth = "";
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        themeUtils.onDialogCreateSetTheme(this);
+        SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
+        int theme = prefs.getInt("Theme_Color", 0);
+        themeUtils.onDialogCreateSetTheme(this, theme);
         report = new Report(this);
         setContentView(R.layout.send_email_dialog);
         final CheckBox pmonthcheckbox = (CheckBox)findViewById(R.id.prevmonth_checkbox);

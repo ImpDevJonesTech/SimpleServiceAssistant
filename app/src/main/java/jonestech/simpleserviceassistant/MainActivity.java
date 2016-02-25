@@ -32,10 +32,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
+        int theme = prefs.getInt("Theme_Color", 0);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            SharedPreferences prefs = getSharedPreferences("THEME_SELECTION", MODE_PRIVATE);
-            Integer theme = prefs.getInt("Theme_Color", themeUtils.GREEN);
             if(theme == themeUtils.PURPLE){
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_purple));
             }
@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 getWindow().setStatusBarColor(getResources().getColor(R.color.dark_orange));
             }
         }
-        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetTheme(this, theme);
         setContentView(R.layout.activity_main);
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

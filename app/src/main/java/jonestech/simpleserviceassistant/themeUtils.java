@@ -1,6 +1,8 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 /**
  * Created by Josiah on 2/27/2015.
@@ -13,12 +15,14 @@ public class themeUtils {
     public final static int RED = 3;
     public final static int ORANGE = 4;
     public static void changeToTheme(Activity activity, int theme){
-        cTheme = theme;
+        SharedPreferences.Editor ed = activity.getSharedPreferences(
+                "THEMES_SELECTION", Context.MODE_PRIVATE).edit();
+        ed.putInt("Theme_Color", theme).apply();
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
-    public static void onActivityCreateSetTheme(Activity activity){
-        switch (cTheme){
+    public static void onActivityCreateSetTheme(Activity activity, int theme){
+        switch (theme){
             default:
             case PURPLE:
                 activity.setTheme(R.style.DefaultTheme);
@@ -37,8 +41,8 @@ public class themeUtils {
                 break;
         }
     }
-    public static void onDialogCreateSetTheme(Activity activity){
-        switch (cTheme){
+    public static void onDialogCreateSetTheme(Activity activity, int theme){
+        switch (theme){
             default:
             case PURPLE:
                 activity.setTheme(R.style.Dialog);
