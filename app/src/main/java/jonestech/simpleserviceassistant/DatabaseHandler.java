@@ -37,6 +37,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Upgrade Table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE " + TABLE_REPORT);onCreate(db);
+        for(int currentVersion = oldVersion + 1;
+                currentVersion <= newVersion; currentVersion++){
+            MigrationTask task = getMigrationTasks(currentVersion);
+            task.onUpgrade(db);
+        }
+    }
+    public MigrationTask getMigrationTasks(int CurrentDB){
+        switch (CurrentDB){
+            case 1:
+                return new MigrationTask1To2();
+            default:
+                return null;
+        }
     }
 }
