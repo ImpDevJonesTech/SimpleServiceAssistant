@@ -8,5 +8,5 @@
     <item android:id="@+id/send_sms" android:title="@string/sms_report"
         android:icon="@drawable/ic_action_send_now" app:showAsAction="ifRoom"/>
     <item android:id="@+id/theme_config" android:title="Settings"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_action_settings" app:showAsAction="ifRoom"/>
 </menu>
