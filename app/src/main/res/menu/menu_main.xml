@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_action_email" app:showAsAction="ifRoom"/>
     <item android:id="@+id/send_sms" android:title="@string/sms_report"
         android:icon="@drawable/ic_action_send_now" app:showAsAction="ifRoom"/>
-    <item android:id="@+id/theme_config" android:title="Settings"
+    <item android:id="@+id/settings" android:title="@string/settings"
         android:icon="@drawable/ic_action_settings" app:showAsAction="ifRoom"/>
 </menu>

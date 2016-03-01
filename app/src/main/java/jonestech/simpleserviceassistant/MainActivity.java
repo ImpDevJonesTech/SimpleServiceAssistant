@@ -32,27 +32,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
-        int theme = prefs.getInt("Theme_Color", 0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            if(theme == themeUtils.PURPLE){
-                getWindow().setStatusBarColor(getResources().getColor(R.color.dark_purple));
-            }
-            if(theme == themeUtils.BLUE){
-                getWindow().setStatusBarColor(getResources().getColor(R.color.dark_blue));
-            }
-            if(theme == themeUtils.GREEN){
-                getWindow().setStatusBarColor(getResources().getColor(R.color.dark_green));
-            }
-            if(theme == themeUtils.RED){
-                getWindow().setStatusBarColor(getResources().getColor(R.color.dark_red));
-            }
-            if(theme == themeUtils.ORANGE){
-                getWindow().setStatusBarColor(getResources().getColor(R.color.dark_orange));
-            }
-        }
-        themeUtils.onActivityCreateSetTheme(this, theme);
+        themeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -121,8 +101,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             startActivity(smsi);
             return true;
         }
-        if(id == R.id.theme_config){
-            Intent i = new Intent(this, Theme_Picker.class);
+        if(id == R.id.settings){
+            Intent i = new Intent(this, SettingsActivity.class);
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.putExtra("EXIT", true);

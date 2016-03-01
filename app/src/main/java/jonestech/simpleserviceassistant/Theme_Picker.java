@@ -13,7 +13,7 @@ public class Theme_Picker extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
         int theme = prefs.getInt("Theme_Color", 0);
-        themeUtils.onActivityCreateSetTheme(this, theme);
+        themeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.theme_picker);
         findViewById(R.id.default_color).setOnClickListener(this);
         findViewById(R.id.blue_color).setOnClickListener(this);

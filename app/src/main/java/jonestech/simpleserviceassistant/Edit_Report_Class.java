@@ -24,9 +24,7 @@ public class Edit_Report_Class extends Activity {
     String co, date;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
-        int theme = prefs.getInt("Theme_Color", 0);
-        themeUtils.onDialogCreateSetTheme(this, theme);
+        themeUtils.onDialogCreateSetTheme(this);
         report = new Report(this);
         c = report.queryAll();
         setContentView(R.layout.edit_report_dialog);

@@ -27,9 +27,7 @@ public class SMS_Report_Class extends Activity {
     String currentmonth, prevmonth = "";
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences("THEMES_SELECTION", MODE_PRIVATE);
-        int theme = prefs.getInt("Theme_Color", 0);
-        themeUtils.onDialogCreateSetTheme(this, theme);
+        themeUtils.onDialogCreateSetTheme(this);
         report = new Report(this);
         setContentView(R.layout.sms_report_dialog);
         final CheckBox pmonthcheckbox = (CheckBox)findViewById(R.id.prevmonth_checkbox);
