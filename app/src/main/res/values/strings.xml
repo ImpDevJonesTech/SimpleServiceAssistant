@@ -13,6 +13,7 @@
     <string name="theme">Themes</string>
     <string name="pioneer_set">Pioneer Settings</string>
     <string name="pioneer_title">Count Pioneer Credit Hours</string>
+    <string name="pioneer_hint">credited time for pioneers</string>
     <string name="pioneer_sum">Includes time on LDC projects and Pioneer School</string>
     <string name="title_section1">Daily Report</string>
     <string name="title_section2">Monthly Report</string>
@@ -29,11 +30,11 @@
     <string name="magazine">Magazines</string>
     <string name="brch">Brochures</string>
     <string name="book">Books</string>
-    <string name="tract">Tracts</string>
+    <string name="tract">Tracts and Articles</string>
     <string name="rv">Return Visits</string>
     <string name="s">Bible Studies</string>
     <string name="description">Comment</string>
-    <string name="pc">Pioneer Credits (hh.mm)</string>
+    <string name="pc">Credit Hours</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
@@ -61,7 +62,7 @@
     <string name="m">magazines</string>
     <string name="br">brochures</string>
     <string name="bo">books</string>
-    <string name="t">tracts</string>
+    <string name="t">tracts and articles</string>
     <string name="r_v">return visits</string>
     <string name="b_s">bible studies</string>
     <string name="p_c">hours of pioneer credits</string>
@@ -71,4 +72,5 @@
     <string name="no_email">No Report Stored for this Month</string>
     <string name="no_email_app">No Email Application Found</string>
     <string name="no_sms_app">No SMS Application Found</string>
+    <string name="placements">Placements</string>
 </resources>

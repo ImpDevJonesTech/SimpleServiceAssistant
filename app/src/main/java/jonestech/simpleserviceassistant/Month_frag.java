@@ -17,6 +17,7 @@ import java.util.TimeZone;
 public class Month_frag extends Fragment {
     Report report;
     Integer h, m, br, bo, t, rv, s, pc = 0;
+    int placements = 0;
     public String month;
     public String monthyear;
     public Integer nmonth;
@@ -38,6 +39,7 @@ public class Month_frag extends Fragment {
         }else if(bool == false){
             p_c_div.setVisibility(View.GONE);
         }
+        final TextView place = (TextView)getActivity().findViewById(R.id.place_m);
         final TextView hour = (TextView)getActivity().findViewById(R.id.hour);
         final TextView mag = (TextView)getActivity().findViewById(R.id.mag);
         final TextView broch = (TextView)getActivity().findViewById(R.id.brch);
@@ -86,6 +88,7 @@ public class Month_frag extends Fragment {
                 rv = report.queryTotalmRV(monthyear);
                 s = report.queryTotalmStudies(monthyear);
                 pc = report.queryTotalmCredits(monthyear);
+                placements = m + br + bo + t;
                 //insert values to the textviews
                 tV.setText(month+" "+nyear);
                 if(h == 0){hour.setText("0");}else{
@@ -101,6 +104,7 @@ public class Month_frag extends Fragment {
                         hour.setText(ha+"."+ma);
                     }
                 }
+                place.setText(""+placements);
                 mag.setText(""+m);
                 broch.setText(""+br);
                 book.setText(""+bo);
@@ -155,6 +159,7 @@ public class Month_frag extends Fragment {
                 rv = report.queryTotalmRV(monthyear);
                 s = report.queryTotalmStudies(monthyear);
                 pc = report.queryTotalmCredits(monthyear);
+                placements = m + br + bo + t;
                 //insert values to the textviews
                 tV.setText(month+" "+nyear);
                 if(h == 0){hour.setText("0");}else{
@@ -170,6 +175,7 @@ public class Month_frag extends Fragment {
                         hour.setText(ha+"."+ma);
                     }
                 }
+                place.setText(""+placements);
                 mag.setText(""+m);
                 broch.setText(""+br);
                 book.setText(""+bo);
@@ -216,6 +222,7 @@ public class Month_frag extends Fragment {
         rv = report.queryTotalmRV(monthyear);
         s = report.queryTotalmStudies(monthyear);
         pc = report.queryTotalmCredits(monthyear);
+        placements = m + br + bo + t;
         //insert values to the textviews
         tV.setText(month+" "+nyear);
         if(h == 0){hour.setText("0");}else{
@@ -231,6 +238,7 @@ public class Month_frag extends Fragment {
                 hour.setText(ha+"."+ma);
             }
         }
+        place.setText(""+placements);
         mag.setText(""+m);
         broch.setText(""+br);
         book.setText(""+bo);

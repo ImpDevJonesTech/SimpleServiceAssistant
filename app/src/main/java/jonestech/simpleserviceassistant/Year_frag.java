@@ -18,6 +18,7 @@ import java.util.TimeZone;
 public class Year_frag extends Fragment {
     Report report;
     Integer h, m, br, bo, t, rv, s, pc = 0;
+    int placements = 0;
     public int pyear, cyear;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class Year_frag extends Fragment {
         }else if(bool == false){
             p_c_div.setVisibility(View.GONE);
         }
+        final TextView place = (TextView)getActivity().findViewById(R.id.placy);
         final TextView hour = (TextView)getActivity().findViewById(R.id.houry);
         final TextView mag = (TextView)getActivity().findViewById(R.id.magy);
         final TextView broch = (TextView)getActivity().findViewById(R.id.brchy);
@@ -70,6 +72,7 @@ public class Year_frag extends Fragment {
                 rv = report.queryTotalyRV(cyear+"");
                 s = report.queryTotalyStudies(cyear+"");
                 pc = report.queryTotalyCredits(cyear+"");
+                placements = m + br + bo + t;
                 //insert values to the textviews
                 tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
                 if(h == 0){hour.setText("0");}else{
@@ -85,6 +88,7 @@ public class Year_frag extends Fragment {
                         hour.setText(ha+"."+ma);
                     }
                 }
+                place.setText(""+placements);
                 mag.setText(""+m);
                 broch.setText(""+br);
                 book.setText(""+bo);
@@ -119,6 +123,7 @@ public class Year_frag extends Fragment {
                 rv = report.queryTotalyRV(cyear+"");
                 s = report.queryTotalyStudies(cyear+"");
                 pc = report.queryTotalyCredits(cyear+"");
+                placements = m + br + bo + t;
                 //insert values to the textviews
                 tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
                 if(h == 0){hour.setText("0");}else{
@@ -134,6 +139,7 @@ public class Year_frag extends Fragment {
                         hour.setText(ha+"."+ma);
                     }
                 }
+                place.setText(""+placements);
                 mag.setText(""+m);
                 broch.setText(""+br);
                 book.setText(""+bo);
@@ -164,6 +170,7 @@ public class Year_frag extends Fragment {
         rv = report.queryTotalyRV(cyear + "");
         s = report.queryTotalyStudies(cyear + "");
         pc = report.queryTotalyCredits(cyear + "");
+        placements = m + br + bo + t;
         //insert values to the textviews
         tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
         if(h == 0){hour.setText("0");}else{
@@ -179,6 +186,7 @@ public class Year_frag extends Fragment {
                 hour.setText(ha+"."+ma);
             }
         }
+        place.setText(""+placements);
         mag.setText(""+m);
         broch.setText(""+br);
         book.setText(""+bo);

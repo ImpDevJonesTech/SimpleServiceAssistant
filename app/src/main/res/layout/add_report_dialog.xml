@@ -115,7 +115,7 @@
                     <EditText android:id="@+id/pca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="credited time for pioneers"
+                        android:hint="@string/pioneer_hint"
                         android:inputType="numberDecimal"/>
                 </LinearLayout>
             </ScrollView>
