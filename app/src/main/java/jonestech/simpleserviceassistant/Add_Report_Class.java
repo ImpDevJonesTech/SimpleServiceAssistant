@@ -1,5 +1,6 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -34,6 +36,19 @@ public class Add_Report_Class extends Activity {
         report = new Report(this);
         c = report.queryAll();
         setContentView(R.layout.add_report_dialog);
+        TextView pc_tv = (TextView)findViewById(R.id.pca_tv);
+        EditText ev = (EditText)findViewById(R.id.pca);
+        pc_tv.setVisibility(View.GONE);
+        ev.setVisibility(View.GONE);
+        SharedPreferences preferences = getSharedPreferences("Pioneer_toggle", Context.MODE_PRIVATE);
+        boolean bool = preferences.getBoolean("pioneer_credits", false);
+        if(bool == true){
+            pc_tv.setVisibility(View.VISIBLE);
+            ev.setVisibility(View.VISIBLE);
+        }else if(bool == false){
+            pc_tv.setVisibility(View.GONE);
+            ev.setVisibility(View.GONE);
+        }
         interstitial = new InterstitialAd(this);
         interstitial.setAdUnitId("ca-app-pub-6509134419013533/6898417609");
         AdRequest adRequest = new AdRequest.Builder().build();

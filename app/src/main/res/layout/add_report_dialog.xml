@@ -107,12 +107,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences|textAutoCorrect"/>
-                    <TextView
+                    <TextView android:id="@+id/pca_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pc"
                         android:textSize="12sp"/>
-                    <EditText android:id="@+id/pc"
+                    <EditText android:id="@+id/pca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="credited time for pioneers"

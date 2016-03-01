@@ -1,10 +1,14 @@
 package jonestech.simpleserviceassistant;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -23,6 +27,15 @@ public class Year_frag extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         report = new Report(getActivity());
+        RelativeLayout p_c_div = (RelativeLayout)getActivity().findViewById(R.id.pcy_row);
+        p_c_div.setVisibility(View.GONE);
+        SharedPreferences preferences = getActivity().getSharedPreferences("Pioneer_toggle", Context.MODE_PRIVATE);
+        boolean bool = preferences.getBoolean("pioneer_credits", false);
+        if(bool == true){
+            p_c_div.setVisibility(View.VISIBLE);
+        }else if(bool == false){
+            p_c_div.setVisibility(View.GONE);
+        }
         final TextView hour = (TextView)getActivity().findViewById(R.id.houry);
         final TextView mag = (TextView)getActivity().findViewById(R.id.magy);
         final TextView broch = (TextView)getActivity().findViewById(R.id.brchy);

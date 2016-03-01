@@ -1,5 +1,6 @@
 package jonestech.simpleserviceassistant;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -42,7 +43,8 @@ public class Edit_Report_Class extends Activity {
         EditText rvs = (EditText)findViewById(R.id.rvs);
         EditText study = (EditText)findViewById(R.id.studies);
         EditText comment = (EditText)findViewById(R.id.description);
-        EditText pioncred = (EditText)findViewById(R.id.pc);
+        TextView pc_tv = (TextView)findViewById(R.id.pc_tv);
+        EditText ev = (EditText)findViewById(R.id.pc);
         TextView tV = (TextView)findViewById(R.id.date_picker_click);
         Intent mintent = getIntent();
         date = mintent.getStringExtra("date");
@@ -70,17 +72,28 @@ public class Edit_Report_Class extends Activity {
         if(rv == 0){rvs.setText("");}else{rvs.setText(rv+"");}
         if(s == 0){study.setText("");}else{study.setText(s+"");}
         if(co.isEmpty()){comment.setText("");}else{comment.setText(co);}
-        if(pc == 0){pioncred.setText("");}else{
+        pc_tv.setVisibility(View.GONE);
+        ev.setVisibility(View.GONE);
+        SharedPreferences preferences = getSharedPreferences("Pioneer_toggle", Context.MODE_PRIVATE);
+        boolean bool = preferences.getBoolean("pioneer_credits", false);
+        if(bool == true || (pc != 0)){
+            pc_tv.setVisibility(View.VISIBLE);
+            ev.setVisibility(View.VISIBLE);
+        }else if(bool == false){
+            pc_tv.setVisibility(View.GONE);
+            ev.setVisibility(View.GONE);
+        }
+        if(pc == 0){ev.setText("");}else{
             Integer pch = pc/3600000;
             Integer pcm = (pc/60000)-(pch*60);
             if(pch.equals(0)&&pcm.equals(0)){
-                pioncred.setText("");
+                ev.setText("");
             }else if(pch.equals(0)){
-                pioncred.setText("0."+pcm);
+                ev.setText("0."+pcm);
             }else if(pcm.equals(0)){
-                pioncred.setText(""+pch);
+                ev.setText(""+pch);
             }else{
-                pioncred.setText(pch+"."+pcm);
+                ev.setText(pch+"."+pcm);
             }
         }
         tV.setText(date);

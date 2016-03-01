@@ -92,14 +92,14 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         }
         if(key.equals("pioneer_credits_toggle")){
             if(!sharedPreferences.getBoolean("pioneer_credits_toggle", false)){
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("pioneer_credits", true).apply();
-            }
-            if(sharedPreferences.getBoolean("pioneer_credits_toggle", false)){
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                SharedPreferences preferences = getSharedPreferences("Pioneer_toggle", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("pioneer_credits", false).apply();
+            }
+            if(sharedPreferences.getBoolean("pioneer_credits_toggle", false)){
+                SharedPreferences preferences = getSharedPreferences("Pioneer_toggle", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("pioneer_credits", true).apply();
             }
         }
     }
@@ -116,5 +116,13 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         getPreferenceScreen()
                 .getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
+    }
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(this, MainActivity.class);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.putExtra("EXIT", true);
+        startActivity(i);
     }
 }
