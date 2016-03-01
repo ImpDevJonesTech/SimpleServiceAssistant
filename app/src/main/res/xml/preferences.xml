@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="theme"
-        android:title="Themes"
-        android:entries="@array/theme_colors"
-        android:entryValues="@array/theme_entries"
-        android:defaultValue="1"/>
     <PreferenceCategory
-        android:title="Pioneer Setting">
-    <CheckBoxPreference
-        android:key="pioneer_credits_toggle"
-        android:title="Count Pioneer Credit Hours"/>
+        android:title="@string/ui">
+        <ListPreference
+            android:key="theme"
+            android:title="@string/theme"
+            android:entries="@array/theme_colors"
+            android:entryValues="@array/theme_entries"
+            android:defaultValue="1"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pioneer_set">
+        <CheckBoxPreference
+            android:key="pioneer_credits_toggle"
+            android:title="@string/pioneer_title"
+            android:summary="@string/pioneer_sum"/>
     </PreferenceCategory>
 </PreferenceScreen>
