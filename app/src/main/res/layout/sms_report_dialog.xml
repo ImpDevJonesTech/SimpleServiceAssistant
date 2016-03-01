@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/send" android:layout_toStartOf="@+id/send"
+                android:background="@android:color/transparent"
                 android:text="@string/cancel"
                 android:onClick="cancel"/>
             <Button
@@ -59,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
                 android:text="@string/send"
                 android:onClick="send"/>
         </RelativeLayout>

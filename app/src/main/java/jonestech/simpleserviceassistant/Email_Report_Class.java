@@ -19,12 +19,14 @@ import java.util.TimeZone;
 public class Email_Report_Class extends Activity {
     Report report;
     String empty = "";
-    String phours, pmagazines, pbrochures, pbooks, ptracts, preturnvisits, pbiblestudies, p_pioncred = "";
+    String phours, preturnvisits, pbiblestudies, p_pioncred = "";
     Integer ph, pm, pbr, pbo, pt, prv, ps, p_pc = 0;
-    String chours, cmagazines, cbrochures, cbooks, ctracts, creturnvisits, cbiblestudies, c_pioncred = "";
+    int pplacements, cplacements = 0;
+    String chours, creturnvisits, cbiblestudies, c_pioncred = "";
     Integer ch, cm, cbr, cbo, ct, crv, cs, c_pc = 0;
     int cmonth, pmonth, cyear, pyear = 0;
     String currentmonth, prevmonth = "";
+    String pplace, cplace = "";
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         themeUtils.onDialogCreateSetTheme(this);
@@ -113,42 +115,34 @@ public class Email_Report_Class extends Activity {
         prv = report.queryTotalmRV(monthyear);
         ps = report.queryTotalmStudies(monthyear);
         p_pc = report.queryTotalmCredits(monthyear);
+        pplacements = pm + pbr + pbo + pt;
         if(ph == 0){phours = empty;}else{
             Integer ha = ph/3600000;
             Integer ma = (ph/60000)-(ha*60);
             if(ha.equals(0)&&ma.equals(0)){phours = empty;
             }else if(ha.equals(0)){
-                if(pm == 0 && pbr == 0 && pbo == 0 && pt == 0 && prv == 0 && ps == 0 && p_pc == 0){
+                if(pplacements == 0 && prv == 0 && ps == 0 && p_pc == 0){
                     phours = "0."+ma+" "+getString(R.string.h)+" ";
-                }else {phours = "0." + ma + " " + getString(R.string.h) + ", ";}
+                }else {phours = "0." + ma + " " + getString(R.string.h) + "\n";}
             }else if(ma.equals(0)){
                 if(pm == 0 && pbr == 0 && pbo == 0 && pt == 0 && prv == 0 && ps == 0 && p_pc == 0){
                     phours = ha+" "+getString(R.string.h)+" ";
-                }else{phours = ha+" "+getString(R.string.h)+", ";}
+                }else{phours = ha+" "+getString(R.string.h)+"\n";}
             }else{
                 if(pm == 0 && pbr == 0 && pbo == 0 && pt == 0 && prv == 0 && ps == 0 && p_pc == 0){
                     phours = ha+"."+ma+" "+getString(R.string.h)+" ";
-                }else {phours = ha + "." + ma + " " + getString(R.string.h) + ", ";}
+                }else {phours = ha + "." + ma + " " + getString(R.string.h) + "\n";}
             }
         }
-        if(pm == 0){pmagazines = empty;}else{
-            if(pbr == 0 && pbo == 0 && pt == 0 && prv == 0 && ps == 0 && p_pc == 0){pmagazines = pm+" "+getString(R.string.m)+" ";
-            }else {pmagazines = pm + " " + getString(R.string.m) + ", ";}}
-        if(pbr == 0){pbrochures = empty;}else{
-            if(pbo == 0 && pt == 0 && prv == 0 && ps == 0 && p_pc == 0){pbrochures = pbr+" "+getString(R.string.br)+" ";
-            }else {pbrochures = pbr + " " + getString(R.string.br) + ", ";}}
-        if(pbo == 0){pbooks = empty;}else{
-            if(pt == 0 && prv == 0 && ps == 0 && p_pc == 0){pbooks = pbo+" "+getString(R.string.bo)+" ";
-            }else {pbooks = pbo + " " + getString(R.string.bo) + ", ";}}
-        if(pt == 0){ptracts = empty;}else{
-            if(prv == 0 && ps == 0 && p_pc == 0) {ptracts = pt + " " + getString(R.string.t) + " ";
-            }else {ptracts = pt + " " + getString(R.string.t) + ", ";}}
+        if(pplacements == 0){pplace = empty;}else{
+            if(prv == 0 && ps == 0 && p_pc == 0){pplace = pplacements+" "+getString(R.string.place)+" ";
+            }else {pplace = pplacements + " " + getString(R.string.place) + "\n";}}
         if(prv == 0){preturnvisits = empty;}else{
             if(ps == 0 && p_pc == 0){preturnvisits = prv+" "+getString(R.string.r_v)+" ";
-            }else {preturnvisits = prv + " " + getString(R.string.r_v) + ", ";}}
+            }else {preturnvisits = prv + " " + getString(R.string.r_v) + "\n";}}
         if(ps == 0){pbiblestudies = empty;}else{
             if(p_pc == 0){pbiblestudies = ps+" "+getString(R.string.b_s)+" ";
-            }else{pbiblestudies = ps+" "+getString(R.string.b_s)+", ";}}
+            }else{pbiblestudies = ps+" "+getString(R.string.b_s)+"\n";}}
         if(p_pc == 0){p_pioncred = empty;}else{
             Integer ha = p_pc/3600000;
             Integer ma = (p_pc/60000)-(ha*60);
@@ -161,10 +155,10 @@ public class Email_Report_Class extends Activity {
                 p_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
             }
         }
-        if((phours+pmagazines+pbrochures+pbooks+ptracts+preturnvisits+pbiblestudies+p_pioncred).equals(empty)){
+        if((phours+pplace+preturnvisits+pbiblestudies+p_pioncred).equals(empty)){
             pmonthmethodstring = getString(R.string.no_email);
         }else {
-            pmonthmethodstring = phours + pmagazines + pbrochures + pbooks + ptracts + preturnvisits + pbiblestudies + p_pioncred;
+            pmonthmethodstring = phours + pplace + preturnvisits + pbiblestudies + p_pioncred;
         }
         return pmonthmethodstring;
     }
@@ -178,42 +172,34 @@ public class Email_Report_Class extends Activity {
         crv = report.queryTotalmRV(monthyear);
         cs = report.queryTotalmStudies(monthyear);
         c_pc = report.queryTotalmCredits(monthyear);
+        cplacements = cm + cbr + cbo + ct;
         if(ch == 0){chours = empty;}else{
             Integer ha = ch/3600000;
             Integer ma = (ch/60000)-(ha*60);
             if(ha.equals(0)&&ma.equals(0)){chours = empty;
             }else if(ha.equals(0)){
-                if(cm == 0 && cbr == 0 && cbo == 0 && ct == 0 && crv == 0 && cs == 0 && c_pc == 0){
+                if(cplacements == 0 && crv == 0 && cs == 0 && c_pc == 0){
                     chours = "0."+ma+" "+getString(R.string.h)+" ";
-                }else {chours = "0." + ma + " " + getString(R.string.h) + ", ";}
+                }else {chours = "0." + ma + " " + getString(R.string.h) + "\n";}
             }else if(ma.equals(0)){
-                if(cm == 0 && cbr == 0 && cbo == 0 && ct == 0 && crv == 0 && cs == 0 && c_pc == 0){
+                if(cplacements == 0 && crv == 0 && cs == 0 && c_pc == 0){
                     chours = ha+" "+getString(R.string.h)+" ";
-                }else{chours = ha+" "+getString(R.string.h)+", ";}
+                }else{chours = ha+" "+getString(R.string.h)+"\n";}
             }else{
-                if(cm == 0 && cbr == 0 && cbo == 0 && ct == 0 && crv == 0 && cs == 0 && c_pc == 0){
+                if(cplacements == 0 && crv == 0 && cs == 0 && c_pc == 0){
                     chours = ha+"."+ma+" "+getString(R.string.h)+" ";
-                }else {chours = ha + "." + ma + " " + getString(R.string.h) + ", ";}
+                }else {chours = ha + "." + ma + " " + getString(R.string.h) + "\n";}
             }
         }
-        if(cm == 0){cmagazines = empty;}else{
-            if(cbr == 0 && cbo == 0 && ct == 0 && crv == 0 && cs == 0 && c_pc == 0){cmagazines = cm + " " + getString(R.string.m) + " ";
-            }else {cmagazines = cm + " " + getString(R.string.m) + ", ";}}
-        if(cbr == 0){cbrochures = empty;}else{
-            if(cbo == 0 && ct == 0 && crv == 0 && cs == 0 && c_pc == 0){cbrochures = cbr + " " + getString(R.string.br) + " ";
-            }else {cbrochures = cbr + " " + getString(R.string.br) + ", ";}}
-        if(cbo == 0){cbooks = empty;}else{
-            if(ct == 0 && crv == 0 && cs == 0 && c_pc == 0){cbooks = cbo + " " + getString(R.string.bo) + " ";
-            }else {cbooks = cbo + " " + getString(R.string.bo) + ", ";}}
-        if(ct == 0){ctracts = empty;}else{
-            if(crv == 0 && cs == 0 && c_pc == 0){ctracts = ct + " " + getString(R.string.t) + " ";
-            }else {ctracts = ct + " " + getString(R.string.t) + ", ";}}
+        if(cplacements == 0){cplace = empty;}else{
+            if(crv == 0 && cs == 0 && c_pc == 0){cplace = cplacements + " " + getString(R.string.place) + " ";
+            }else {cplace = cplacements + " " + getString(R.string.place) + "\n";}}
         if(crv == 0){creturnvisits = empty;}else{
             if(cs == 0 && c_pc == 0){creturnvisits = crv + " " + getString(R.string.r_v) + " ";
-            }else {creturnvisits = crv + " " + getString(R.string.r_v) + ", ";}}
+            }else {creturnvisits = crv + " " + getString(R.string.r_v) + "\n";}}
         if(cs == 0){cbiblestudies = empty;}else{
             if(c_pc == 0){cbiblestudies = cs+" "+getString(R.string.b_s)+" ";
-            }else {cbiblestudies = cs+" "+getString(R.string.b_s)+", ";}}
+            }else {cbiblestudies = cs+" "+getString(R.string.b_s)+"\n";}}
         if(c_pc == 0){c_pioncred = empty;}else{
             Integer ha = c_pc/3600000;
             Integer ma = (c_pc/60000)-(ha*60);
@@ -226,10 +212,10 @@ public class Email_Report_Class extends Activity {
                 c_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
             }
         }
-        if((chours+cmagazines+cbrochures+cbooks+ctracts+creturnvisits+cbiblestudies+c_pioncred).equals(empty)){
+        if((chours+cplace+creturnvisits+cbiblestudies+c_pioncred).equals(empty)){
             cmonthmethodstring = getString(R.string.no_email);
         }else{
-            cmonthmethodstring = chours+cmagazines+cbrochures+cbooks+ctracts+creturnvisits+cbiblestudies+c_pioncred;
+            cmonthmethodstring = chours+cplace+creturnvisits+cbiblestudies+c_pioncred;
         }
         return cmonthmethodstring;
     }

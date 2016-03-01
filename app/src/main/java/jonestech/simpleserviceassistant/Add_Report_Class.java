@@ -24,8 +24,8 @@ public class Add_Report_Class extends Activity {
     DatePicker dP;
     Report report;
     Cursor c;
-    Integer h, m, br, bo, t, rv, s, pc;
-    String co, year, monthyear;
+    Integer h, m, br, bo, t, rv, s, pc = 0;
+    String co, year, monthyear = "";
     Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
     int currentYear, pioneeryear;
     int currentDayOfMonth;
@@ -68,7 +68,7 @@ public class Add_Report_Class extends Activity {
         EditText rvs = (EditText)findViewById(R.id.rvs);
         EditText study = (EditText)findViewById(R.id.studies);
         EditText comment = (EditText)findViewById(R.id.description);
-        EditText pioncred = (EditText)findViewById(R.id.pc);
+        EditText pioncred = (EditText)findViewById(R.id.pca);
         dP = (DatePicker)findViewById(R.id.date_picker);
         if(dP.getMonth() == 0){month = getString(R.string.jan);}
         else if(dP.getMonth() == 1){month = getString(R.string.feb);}

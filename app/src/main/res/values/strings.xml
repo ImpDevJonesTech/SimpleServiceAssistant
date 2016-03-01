@@ -73,4 +73,5 @@
     <string name="no_email_app">No Email Application Found</string>
     <string name="no_sms_app">No SMS Application Found</string>
     <string name="placements">Placements</string>
+    <string name="place">placements</string>
 </resources>
