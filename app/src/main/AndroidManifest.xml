@@ -20,7 +20,6 @@
         <activity android:name=".Edit_Report_Class" android:theme="@style/Dialog"/>
         <activity android:name=".Email_Report_Class" android:theme="@style/Dialog"/>
         <activity android:name=".SMS_Report_Class" android:theme="@style/Dialog"/>
-        <activity android:name=".Theme_Picker"/>
         <activity android:name=".SettingsActivity"/>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
