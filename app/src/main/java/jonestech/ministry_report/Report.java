@@ -1,4 +1,4 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,33 +16,43 @@ public class Report {
     Integer i = 0;
     public Report(Context context){c = context;}
     public Report Read(){
-        dh = new DatabaseHandler(c, dh.DATABASE_NAME, null, dh.DATABASE_VERSION);
+        dh = new DatabaseHandler(c, DatabaseHandler.DATABASE_NAME, null, DatabaseHandler.DATABASE_VERSION);
         db = dh.getReadableDatabase();
         return this;
     }
     public Report Write(){
-        dh = new DatabaseHandler(c, dh.DATABASE_NAME, null, dh.DATABASE_VERSION);
+        dh = new DatabaseHandler(c, DatabaseHandler.DATABASE_NAME, null, DatabaseHandler.DATABASE_VERSION);
         db = dh.getWritableDatabase();
         return this;
     }
     public void Close(){db.close();}
-    public long Insert(int id, String date, String month, String year, int h, int m, int brch, int book, int t, int rv, int s, String D, int PC){
-        ContentValues v = new ContentValues();
-        v.put(dh.KEY_ID, id);
-        v.put(dh.KEY_DATE, date);
-        v.put(dh.KEY_MONTH, month);
-        v.put(dh.KEY_YEAR, year);
-        v.put(dh.KEY_H, h);
-        v.put(dh.KEY_M, m);
-        v.put(dh.KEY_BRCH, brch);
-        v.put(dh.KEY_BOOK, book);
-        v.put(dh.KEY_T, t);
-        v.put(dh.KEY_RV, rv);
-        v.put(dh.KEY_S, s);
-        v.put(dh.KEY_D, D);
-        v.put(dh.KEY_PC, PC);
+    public void denullify(){
         Write();
-        long value = db.insert(dh.TABLE_REPORT, null, v);
+        try {
+            String sql = "UPDATE report SET video_showings = 0 WHERE date > 0";
+            db.execSQL(sql);
+        }finally {
+            db.close();
+        }
+    }
+    public long Insert(int id, String date, String month, String year, int h, int m, int brch, int book, int t, int rv, int s, String D, int PC, int VS){
+        ContentValues v = new ContentValues();
+        v.put(DatabaseHandler.KEY_ID, id);
+        v.put(DatabaseHandler.KEY_DATE, date);
+        v.put(DatabaseHandler.KEY_MONTH, month);
+        v.put(DatabaseHandler.KEY_YEAR, year);
+        v.put(DatabaseHandler.KEY_H, h);
+        v.put(DatabaseHandler.KEY_M, m);
+        v.put(DatabaseHandler.KEY_BRCH, brch);
+        v.put(DatabaseHandler.KEY_BOOK, book);
+        v.put(DatabaseHandler.KEY_T, t);
+        v.put(DatabaseHandler.KEY_RV, rv);
+        v.put(DatabaseHandler.KEY_S, s);
+        v.put(DatabaseHandler.KEY_D, D);
+        v.put(DatabaseHandler.KEY_PC, PC);
+        v.put(DatabaseHandler.KEY_VS, VS);
+        Write();
+        long value = db.insert(DatabaseHandler.TABLE_REPORT, null, v);
         Close();
         return value;
     }
@@ -118,6 +128,15 @@ public class Report {
             db.close();
         }
     }
+    public int queryTotalmVideos(String month){
+        Write();
+        try {
+            String sql = "SELECT TOTAL(video_showings) From report where month="+month;
+            return (int) DatabaseUtils.longForQuery(db, sql, null);
+        }finally {
+            db.close();
+        }
+    }
     public Integer queryTotalyHours(String year){
         Write();
         try{
@@ -190,9 +209,18 @@ public class Report {
             db.close();
         }
     }
+    public int queryTotalyVideos(String year){
+        Write();
+        try {
+            String sql= "SELECT TOTAL(video_showings) From report where year="+year;
+            return (int) DatabaseUtils.longForQuery(db, sql, null);
+        }finally {
+            db.close();
+        }
+    }
     public String queryReport(int rowId){
         String report = "";
-        String query = "SELECT date, month, year, hours, magazines, brochures, books, tracts, return_visits, bible_studies, details, pioneer_credits FROM report WHERE _id="+rowId;
+        String query = "SELECT date, month, year, hours, magazines, brochures, books, tracts, return_visits, bible_studies, details, pioneer_credits, video_showings FROM report WHERE _id="+rowId;
         Write();
         Cursor c = db.rawQuery(query, null);
         if(c!=null&&c.getCount()>0){
@@ -202,7 +230,7 @@ public class Report {
                         +c.getString(3)+" hours, "+c.getString(4)+" magazines, "+c.getString(5)+" brochures, "
                         +c.getString(6)+" books, "+c.getString(7)+" tracts, "+c.getString(8)+" return visits, "
                         +c.getString(9)+" bible studies. Details are: "+c.getString(10)+". Pioneer credits are: "
-                        +c.getString(11)+".");
+                        +c.getString(11)+", "+c.getString(12)+" video showings.");
             }while(c.moveToNext());
         }
         Close();
@@ -369,34 +397,49 @@ public class Report {
         Close();
         return i;
     }
+    public Integer queryVideos(int rowId){
+        String query = "SELECT video_showings from report where _id="+rowId;
+        Write();
+        Cursor c = db.rawQuery(query, null);
+        if(c!=null&&c.getCount()>0){
+            c.moveToFirst();
+            do{
+                i=c.getInt(0);
+            }while (c.moveToNext());
+        }
+        Close();
+        return i;
+    }
     public Cursor queryAll(){
         String[] all = {
-                dh.KEY_ID, dh.KEY_DATE, dh.KEY_MONTH, dh.KEY_YEAR, dh.KEY_H, dh.KEY_M, dh.KEY_BRCH, dh.KEY_BOOK, dh.KEY_T, dh.KEY_RV, dh.KEY_S, dh.KEY_D, dh.KEY_PC
+                DatabaseHandler.KEY_ID, DatabaseHandler.KEY_DATE, DatabaseHandler.KEY_MONTH, DatabaseHandler.KEY_YEAR, DatabaseHandler.KEY_H, DatabaseHandler.KEY_M, DatabaseHandler.KEY_BRCH, DatabaseHandler.KEY_BOOK, DatabaseHandler.KEY_T, DatabaseHandler.KEY_RV, DatabaseHandler.KEY_S, DatabaseHandler.KEY_D, DatabaseHandler.KEY_PC
+                , DatabaseHandler.KEY_VS
         };
         Write();
-        Cursor c = db.query(dh.TABLE_REPORT, all, null, null, null, null, null, null);
+        Cursor c = db.query(DatabaseHandler.TABLE_REPORT, all, null, null, null, null, null, null);
         Close();
         return c;
     }
-    public long updateDetail(int id, int h, int m, int brch, int book, int t, int rv, int s, String D, int PC){
+    public long updateDetail(int id, int h, int m, int brch, int book, int t, int rv, int s, String D, int PC, int VS){
         ContentValues v = new ContentValues();
-        v.put(dh.KEY_H, h);
-        v.put(dh.KEY_M, m);
-        v.put(dh.KEY_BRCH, brch);
-        v.put(dh.KEY_BOOK, book);
-        v.put(dh.KEY_T, t);
-        v.put(dh.KEY_RV, rv);
-        v.put(dh.KEY_S, s);
-        v.put(dh.KEY_D, D);
-        v.put(dh.KEY_PC, PC);
+        v.put(DatabaseHandler.KEY_H, h);
+        v.put(DatabaseHandler.KEY_M, m);
+        v.put(DatabaseHandler.KEY_BRCH, brch);
+        v.put(DatabaseHandler.KEY_BOOK, book);
+        v.put(DatabaseHandler.KEY_T, t);
+        v.put(DatabaseHandler.KEY_RV, rv);
+        v.put(DatabaseHandler.KEY_S, s);
+        v.put(DatabaseHandler.KEY_D, D);
+        v.put(DatabaseHandler.KEY_PC, PC);
+        v.put(DatabaseHandler.KEY_VS, VS);
         Write();
-        long val = db.update(dh.TABLE_REPORT, v, dh.KEY_ID + "=" + id, null);
+        long val = db.update(DatabaseHandler.TABLE_REPORT, v, DatabaseHandler.KEY_ID + "=" + id, null);
         Close();
         return val;
     }
     public int deleteOneReport(int rowId){
         Write();
-        int value = db.delete(dh.TABLE_REPORT, dh.KEY_ID + "=" + rowId, null);
+        int value = db.delete(DatabaseHandler.TABLE_REPORT, DatabaseHandler.KEY_ID + "=" + rowId, null);
         Close();
         return value;
     }

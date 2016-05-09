@@ -1,4 +1,4 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

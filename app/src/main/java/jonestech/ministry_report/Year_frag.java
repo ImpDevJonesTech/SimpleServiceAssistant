@@ -1,8 +1,7 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import java.util.TimeZone;
 public class Year_frag extends Fragment {
     Report report;
     Integer h, m, br, bo, t, rv, s, pc = 0;
-    int placements = 0;
+    int placements, vs = 0;
     public int pyear, cyear;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public class Year_frag extends Fragment {
         }else if(bool == false){
             p_c_div.setVisibility(View.GONE);
         }
+        final TextView video = (TextView)getActivity().findViewById(R.id.vsy);
         final TextView place = (TextView)getActivity().findViewById(R.id.placy);
         final TextView hour = (TextView)getActivity().findViewById(R.id.houry);
         final TextView mag = (TextView)getActivity().findViewById(R.id.magy);
@@ -73,6 +73,7 @@ public class Year_frag extends Fragment {
                 s = report.queryTotalyStudies(cyear+"");
                 pc = report.queryTotalyCredits(cyear+"");
                 placements = m + br + bo + t;
+                vs = report.queryTotalyVideos(cyear+"");
                 //insert values to the textviews
                 tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
                 if(h == 0){hour.setText("0");}else{
@@ -93,6 +94,7 @@ public class Year_frag extends Fragment {
                 broch.setText(""+br);
                 book.setText(""+bo);
                 tract.setText(""+t);
+                video.setText(""+vs);
                 rtrnvst.setText(""+rv);
                 study.setText(""+s);
                 if(pc == 0){picr.setText("0");}else{
@@ -124,6 +126,7 @@ public class Year_frag extends Fragment {
                 s = report.queryTotalyStudies(cyear+"");
                 pc = report.queryTotalyCredits(cyear+"");
                 placements = m + br + bo + t;
+                vs = report.queryTotalyVideos(cyear+"");
                 //insert values to the textviews
                 tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
                 if(h == 0){hour.setText("0");}else{
@@ -144,6 +147,7 @@ public class Year_frag extends Fragment {
                 broch.setText(""+br);
                 book.setText(""+bo);
                 tract.setText(""+t);
+                video.setText(""+vs);
                 rtrnvst.setText(""+rv);
                 study.setText(""+s);
                 if(pc == 0){picr.setText("0");}else{
@@ -171,6 +175,7 @@ public class Year_frag extends Fragment {
         s = report.queryTotalyStudies(cyear + "");
         pc = report.queryTotalyCredits(cyear + "");
         placements = m + br + bo + t;
+      //  vs = report.queryTotalyVideos(cyear + "");
         //insert values to the textviews
         tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
         if(h == 0){hour.setText("0");}else{
@@ -191,6 +196,7 @@ public class Year_frag extends Fragment {
         broch.setText(""+br);
         book.setText(""+bo);
         tract.setText(""+t);
+        video.setText(""+vs);
         rtrnvst.setText(""+rv);
         study.setText(""+s);
         if(pc == 0){picr.setText("0");}else{

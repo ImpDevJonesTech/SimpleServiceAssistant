@@ -1,7 +1,6 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +26,8 @@ public class Email_Report_Class extends Activity {
     int cmonth, pmonth, cyear, pyear = 0;
     String currentmonth, prevmonth = "";
     String pplace, cplace = "";
+    String pvideo, cvideo = "";
+    int pv, cv = 0;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         themeUtils.onDialogCreateSetTheme(this);
@@ -116,6 +117,7 @@ public class Email_Report_Class extends Activity {
         ps = report.queryTotalmStudies(monthyear);
         p_pc = report.queryTotalmCredits(monthyear);
         pplacements = pm + pbr + pbo + pt;
+        pv = report.queryTotalmVideos(monthyear);
         if(ph == 0){phours = empty;}else{
             Integer ha = ph/3600000;
             Integer ma = (ph/60000)-(ha*60);
@@ -135,8 +137,11 @@ public class Email_Report_Class extends Activity {
             }
         }
         if(pplacements == 0){pplace = empty;}else{
-            if(prv == 0 && ps == 0 && p_pc == 0){pplace = pplacements+" "+getString(R.string.place)+" ";
+            if(pv == 0 && prv == 0 && ps == 0 && p_pc == 0){pplace = pplacements+" "+getString(R.string.place)+" ";
             }else {pplace = pplacements + " " + getString(R.string.place) + "\n";}}
+        if(pv == 0){pvideo = empty;}else{
+            if(prv == 0 && ps == 0 && p_pc == 0) {pvideo = pv + " " + getString(R.string.video) + " ";
+            }else {pvideo = pv + " " + getString(R.string.video) + "\n";}}
         if(prv == 0){preturnvisits = empty;}else{
             if(ps == 0 && p_pc == 0){preturnvisits = prv+" "+getString(R.string.r_v)+" ";
             }else {preturnvisits = prv + " " + getString(R.string.r_v) + "\n";}}
@@ -173,6 +178,7 @@ public class Email_Report_Class extends Activity {
         cs = report.queryTotalmStudies(monthyear);
         c_pc = report.queryTotalmCredits(monthyear);
         cplacements = cm + cbr + cbo + ct;
+        cv = report.queryTotalmVideos(monthyear);
         if(ch == 0){chours = empty;}else{
             Integer ha = ch/3600000;
             Integer ma = (ch/60000)-(ha*60);
@@ -192,8 +198,11 @@ public class Email_Report_Class extends Activity {
             }
         }
         if(cplacements == 0){cplace = empty;}else{
-            if(crv == 0 && cs == 0 && c_pc == 0){cplace = cplacements + " " + getString(R.string.place) + " ";
+            if(cv == 0 && crv == 0 && cs == 0 && c_pc == 0){cplace = cplacements + " " + getString(R.string.place) + " ";
             }else {cplace = cplacements + " " + getString(R.string.place) + "\n";}}
+        if(cv == 0){cvideo = empty;}else{
+            if(crv == 0 && cs == 0 && c_pc == 0) {cvideo = cv + " " + getString(R.string.video) + " ";
+            }else {cvideo = cv + " " + getString(R.string.video) + "\n";}}
         if(crv == 0){creturnvisits = empty;}else{
             if(cs == 0 && c_pc == 0){creturnvisits = crv + " " + getString(R.string.r_v) + " ";
             }else {creturnvisits = crv + " " + getString(R.string.r_v) + "\n";}}

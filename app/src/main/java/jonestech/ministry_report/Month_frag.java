@@ -1,4 +1,4 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import java.util.TimeZone;
 public class Month_frag extends Fragment {
     Report report;
     Integer h, m, br, bo, t, rv, s, pc = 0;
-    int placements = 0;
+    int placements, vs = 0;
     public String month;
     public String monthyear;
     public Integer nmonth;
@@ -39,6 +39,7 @@ public class Month_frag extends Fragment {
         }else if(bool == false){
             p_c_div.setVisibility(View.GONE);
         }
+        final TextView video = (TextView)getActivity().findViewById(R.id.vs);
         final TextView place = (TextView)getActivity().findViewById(R.id.place_m);
         final TextView hour = (TextView)getActivity().findViewById(R.id.hour);
         final TextView mag = (TextView)getActivity().findViewById(R.id.mag);
@@ -89,6 +90,7 @@ public class Month_frag extends Fragment {
                 s = report.queryTotalmStudies(monthyear);
                 pc = report.queryTotalmCredits(monthyear);
                 placements = m + br + bo + t;
+                vs = report.queryTotalmVideos(monthyear);
                 //insert values to the textviews
                 tV.setText(month+" "+nyear);
                 if(h == 0){hour.setText("0");}else{
@@ -109,6 +111,7 @@ public class Month_frag extends Fragment {
                 broch.setText(""+br);
                 book.setText(""+bo);
                 tract.setText(""+t);
+                video.setText(""+vs);
                 rtrnvst.setText(""+rv);
                 study.setText(""+s);
                 if(pc == 0){picr.setText("0");}else{
@@ -160,6 +163,7 @@ public class Month_frag extends Fragment {
                 s = report.queryTotalmStudies(monthyear);
                 pc = report.queryTotalmCredits(monthyear);
                 placements = m + br + bo + t;
+                vs = report.queryTotalmVideos(monthyear);
                 //insert values to the textviews
                 tV.setText(month+" "+nyear);
                 if(h == 0){hour.setText("0");}else{
@@ -180,6 +184,7 @@ public class Month_frag extends Fragment {
                 broch.setText(""+br);
                 book.setText(""+bo);
                 tract.setText(""+t);
+                video.setText(""+vs);
                 rtrnvst.setText(""+rv);
                 study.setText(""+s);
                 if(pc == 0){picr.setText("0");}else{
@@ -223,6 +228,7 @@ public class Month_frag extends Fragment {
         s = report.queryTotalmStudies(monthyear);
         pc = report.queryTotalmCredits(monthyear);
         placements = m + br + bo + t;
+//        vs = report.queryTotalmVideos(monthyear);
         //insert values to the textviews
         tV.setText(month+" "+nyear);
         if(h == 0){hour.setText("0");}else{
@@ -243,6 +249,7 @@ public class Month_frag extends Fragment {
         broch.setText(""+br);
         book.setText(""+bo);
         tract.setText(""+t);
+        video.setText(""+vs);
         rtrnvst.setText(""+rv);
         study.setText(""+s);
         if(pc == 0){picr.setText("0");}else{

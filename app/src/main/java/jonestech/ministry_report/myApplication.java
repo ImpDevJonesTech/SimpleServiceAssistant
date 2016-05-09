@@ -1,4 +1,4 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.app.Application;
 /**
  * Created by Josiah on 1/2/2015.

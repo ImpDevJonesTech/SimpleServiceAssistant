@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JW Service Assistant</string>
+    <string name="app_name">Ministry Report</string>
     <string-array name="theme_colors">
         <item>Purple</item><item>Blue</item><item>Green</item>
         <item>Red</item><item>Orange</item>
@@ -74,4 +74,6 @@
     <string name="no_sms_app">No SMS Application Found</string>
     <string name="placements">Placements</string>
     <string name="place">placements</string>
+    <string name="vs">Videos</string>
+    <string name="video">video showings</string>
 </resources>

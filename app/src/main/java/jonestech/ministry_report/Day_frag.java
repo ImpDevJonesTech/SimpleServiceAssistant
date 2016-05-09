@@ -1,23 +1,17 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.net.URL;
 
 /**
  * Created by Josiah on 12/4/2014.
@@ -37,10 +31,10 @@ public class Day_frag extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        dh = new DatabaseHandler(getActivity(), dh.DATABASE_NAME, null, dh.DATABASE_VERSION);
+        dh = new DatabaseHandler(getActivity(), DatabaseHandler.DATABASE_NAME, null, DatabaseHandler.DATABASE_VERSION);
         SQLiteDatabase db = dh.getWritableDatabase();
         listView = (ListView)getActivity().findViewById(R.id.list_View);
-        query = "Select * From "+dh.TABLE_REPORT;
+        query = "Select * From "+ DatabaseHandler.TABLE_REPORT;
         mCursor = db.rawQuery(query, null);
         adapter = new MCursorAdapter(getActivity(), mCursor);
         listView.setAdapter(adapter);
@@ -72,6 +66,7 @@ public class Day_frag extends Fragment {
                 intent.putExtra("br", report.queryBrochures(iid));
                 intent.putExtra("bo", report.queryBooks(iid));
                 intent.putExtra("t", report.queryTracts(iid));
+                intent.putExtra("vs", report.queryVideos(iid));
                 intent.putExtra("rv", report.queryRVs(iid));
                 intent.putExtra("s", report.queryStudies(iid));
                 intent.putExtra("c", report.queryDetails(iid));

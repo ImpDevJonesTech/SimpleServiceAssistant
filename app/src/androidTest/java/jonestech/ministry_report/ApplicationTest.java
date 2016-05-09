@@ -1,4 +1,4 @@
-package jonestech.simpleserviceassistant;
+package jonestech.ministry_report;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
