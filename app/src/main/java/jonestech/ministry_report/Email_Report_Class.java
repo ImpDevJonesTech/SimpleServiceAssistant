@@ -140,8 +140,8 @@ public class Email_Report_Class extends Activity {
             if(pv == 0 && prv == 0 && ps == 0 && p_pc == 0){pplace = pplacements+" "+getString(R.string.place)+" ";
             }else {pplace = pplacements + " " + getString(R.string.place) + "\n";}}
         if(pv == 0){pvideo = empty;}else{
-            if(prv == 0 && ps == 0 && p_pc == 0) {pvideo = pv + " " + getString(R.string.video) + " ";
-            }else {pvideo = pv + " " + getString(R.string.video) + "\n";}}
+            if(prv == 0 && ps == 0 && p_pc == 0) {pvideo = pv + " " + getString(R.string.v_s) + " ";
+            }else {pvideo = pv + " " + getString(R.string.v_s) + "\n";}}
         if(prv == 0){preturnvisits = empty;}else{
             if(ps == 0 && p_pc == 0){preturnvisits = prv+" "+getString(R.string.r_v)+" ";
             }else {preturnvisits = prv + " " + getString(R.string.r_v) + "\n";}}
@@ -160,10 +160,10 @@ public class Email_Report_Class extends Activity {
                 p_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
             }
         }
-        if((phours+pplace+preturnvisits+pbiblestudies+p_pioncred).equals(empty)){
+        if((phours+pplace+pvideo+preturnvisits+pbiblestudies+p_pioncred).equals(empty)){
             pmonthmethodstring = getString(R.string.no_email);
         }else {
-            pmonthmethodstring = phours + pplace + preturnvisits + pbiblestudies + p_pioncred;
+            pmonthmethodstring = phours + pplace +pvideo+ preturnvisits + pbiblestudies + p_pioncred;
         }
         return pmonthmethodstring;
     }
@@ -201,8 +201,8 @@ public class Email_Report_Class extends Activity {
             if(cv == 0 && crv == 0 && cs == 0 && c_pc == 0){cplace = cplacements + " " + getString(R.string.place) + " ";
             }else {cplace = cplacements + " " + getString(R.string.place) + "\n";}}
         if(cv == 0){cvideo = empty;}else{
-            if(crv == 0 && cs == 0 && c_pc == 0) {cvideo = cv + " " + getString(R.string.video) + " ";
-            }else {cvideo = cv + " " + getString(R.string.video) + "\n";}}
+            if(crv == 0 && cs == 0 && c_pc == 0) {cvideo = cv + " " + getString(R.string.v_s) + " ";
+            }else {cvideo = cv + " " + getString(R.string.v_s) + "\n";}}
         if(crv == 0){creturnvisits = empty;}else{
             if(cs == 0 && c_pc == 0){creturnvisits = crv + " " + getString(R.string.r_v) + " ";
             }else {creturnvisits = crv + " " + getString(R.string.r_v) + "\n";}}
@@ -221,10 +221,10 @@ public class Email_Report_Class extends Activity {
                 c_pioncred = ha+"."+ma+" "+getString(R.string.p_c_h_m)+" ";
             }
         }
-        if((chours+cplace+creturnvisits+cbiblestudies+c_pioncred).equals(empty)){
+        if((chours+cplace+cvideo+creturnvisits+cbiblestudies+c_pioncred).equals(empty)){
             cmonthmethodstring = getString(R.string.no_email);
         }else{
-            cmonthmethodstring = chours+cplace+creturnvisits+cbiblestudies+c_pioncred;
+            cmonthmethodstring = chours+cplace+cvideo+creturnvisits+cbiblestudies+c_pioncred;
         }
         return cmonthmethodstring;
     }

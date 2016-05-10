@@ -32,10 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             +KEY_ID+" integer primary key autoincrement, "+KEY_DATE+" STRING not null, "+KEY_MONTH+" STRING not null, "
             +KEY_YEAR+" STRING not null, "+KEY_H+" INTEGER not null, "+KEY_M+" INTEGER not null, "
             +KEY_BRCH+" INTEGER not null, "+KEY_BOOK+" INTEGER not null, "+KEY_T+" INTEGER not null, "+KEY_RV+
-            " INTEGER not null, "+KEY_S+" INTEGER not null, "+KEY_D+" STRING not null, "+KEY_PC+" INTEGER not null" +
-           //", "+KEY_VS+
-            //" INTEGER not null" +
-           ");";
+            " INTEGER not null, "+KEY_S+" INTEGER not null, "+KEY_D+" STRING not null, "+KEY_PC+" INTEGER not null"+", "+KEY_VS+" INTEGER not null);";
     public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){super(context, name, factory, version);}
     //Create Table
     @Override

@@ -8,8 +8,8 @@ android {
         applicationId "jonestech.ministry_report"
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 18
-        versionName "3.0"
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
         release {
@@ -20,7 +20,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile fileTree(include: ['*.jar'], dir: 'lib')
     compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
 }

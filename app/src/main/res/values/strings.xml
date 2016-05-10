@@ -64,7 +64,7 @@
     <string name="bo">books</string>
     <string name="t">tracts and articles</string>
     <string name="r_v">return visits</string>
-    <string name="b_s">bible studies</string>
+    <string name="b_s">Bible studies</string>
     <string name="p_c">hours of pioneer credits</string>
     <string name="p_c_h_m">hours.minutes of pioneer credits</string>
     <string name="report_for">Report for</string>
@@ -75,5 +75,6 @@
     <string name="placements">Placements</string>
     <string name="place">placements</string>
     <string name="vs">Videos</string>
-    <string name="video">video showings</string>
+    <string name="video">Video showings</string>
+    <string name="v_s">video showings</string>
 </resources>

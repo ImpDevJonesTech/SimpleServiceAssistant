@@ -175,7 +175,7 @@ public class Year_frag extends Fragment {
         s = report.queryTotalyStudies(cyear + "");
         pc = report.queryTotalyCredits(cyear + "");
         placements = m + br + bo + t;
-      //  vs = report.queryTotalyVideos(cyear + "");
+        vs = report.queryTotalyVideos(cyear + "");
         //insert values to the textviews
         tV.setText(getString(R.string.sep)+", "+pyear+"\n"+" - "+getString(R.string.aug)+", "+cyear);
         if(h == 0){hour.setText("0");}else{

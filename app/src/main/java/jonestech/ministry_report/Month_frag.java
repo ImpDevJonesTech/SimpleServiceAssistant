@@ -228,7 +228,7 @@ public class Month_frag extends Fragment {
         s = report.queryTotalmStudies(monthyear);
         pc = report.queryTotalmCredits(monthyear);
         placements = m + br + bo + t;
-//        vs = report.queryTotalmVideos(monthyear);
+        vs = report.queryTotalmVideos(monthyear);
         //insert values to the textviews
         tV.setText(month+" "+nyear);
         if(h == 0){hour.setText("0");}else{
