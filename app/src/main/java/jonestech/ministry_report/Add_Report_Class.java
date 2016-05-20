@@ -51,7 +51,7 @@ public class Add_Report_Class extends Activity {
             ev.setVisibility(View.GONE);
         }
         interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId("ca-app-pub-6509134419013533/6898417609");
+        interstitial.setAdUnitId("ca-app-pub-6509134419013533/5946848808");
         AdRequest adRequest = new AdRequest.Builder().build();
         interstitial.loadAd(adRequest);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
